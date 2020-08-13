@@ -1,0 +1,15 @@
+<div class="container pt-3">
+
+  <div class="d-flex justify-content-between">
+    <div><h1 class="pt-2">Add a dose to <%= @cocktail.name %></h1></div>
+
+    <div><%= link_to "Back to all cocktails", cocktails_path, class: "btn btn-primary mt-3" %></div>
+  </div>
+
+  <%= simple_form_for [@cocktail, @dose] do |f| %>
+    <%= f.association :ingredient %>
+    <%= f.input :description %>
+    <%= f.submit %>
+  <% end %>
+</div>
+

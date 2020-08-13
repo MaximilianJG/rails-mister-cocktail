@@ -1,0 +1,33 @@
+<div class="container pt-3">
+
+<div class="d-flex justify-content-between">
+  <div><h1 class="pt-2">All Cocktails</h1></div>
+  <div><%= link_to "Mix a new cocktail", new_cocktail_path, class: "btn btn-primary mt-3" %></div>
+</div>
+
+<div class="row">
+  <% @cocktails.each do |cocktail| %>
+
+  <div class="col-sm-3 my-3">
+    <div class="card card-image h-100" style="background-image: url(https://source.unsplash.com/random);">
+      <div class="card-body">
+        <h5 class="card-title"> <%= link_to cocktail.name, cocktail_path(cocktail) %></h5>
+       <% cocktail.doses.each do |dose| %>
+        <ul class="">
+          <li> <%= dose.ingredient.name.capitalize %> <%= link_to dose_path(dose), method: :delete, data: { confirm: "Are you sure?" } do %>
+    <i class="fas fa-trash-alt ml-2"></i>
+    <% end %> </li>
+        </ul>
+        <% end %>
+        <div>
+          <%= link_to "Edit Dose", new_cocktail_dose_path(cocktail), class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+</div>
+
+
