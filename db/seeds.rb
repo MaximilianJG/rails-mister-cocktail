@@ -10,4 +10,20 @@ Ingredient.create(name: "lemon")
 Ingredient.create(name: "ice")
 Ingredient.create(name: "mint leaves")
 
-Cocktail.create(name: "Mojito")
+require 'open-uri'
+require 'json'
+def api_call()
+  url = "http://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"
+  ingredient = open(url).read
+  return JSON.parse(ingredient)
+end
+
+puts "Creating Ingredient List"
+
+api_call["drinks"].each do |single|
+    ing = single.values[0]
+ @ingredient = Ingredient.new(name: ing)
+ @ingredient.save
+end
+
+puts "Ingredient list created"

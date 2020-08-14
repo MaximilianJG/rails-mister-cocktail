@@ -1,4 +1,4 @@
-<div class="container pt-3">
+<div class="container p-5 card mt-5 form-card">
 
 <div class="d-flex justify-content-between">
   <div><h1 class="pt-2">Create a new Cocktail</h1></div>
@@ -8,7 +8,8 @@
 <div>
   <%= simple_form_for @cocktail do |f| %>
   <%= f.input :name %>
-  <%= f.submit %>
+  <%= f.input :photo, as: :file %>
+  <%= f.submit "Create Cocktail", class: "btn btn-dark"%>
   <% end %>
 </div>
 

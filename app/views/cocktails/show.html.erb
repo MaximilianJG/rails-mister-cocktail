@@ -1,18 +1,17 @@
-<div class="container pt-3">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('<%= cl_image_path @cocktail.photo.key, height: 300, width: 400, crop: :fill %>');">
+  <div class="container">
+    <h1><%= @cocktail.name %></h1>
 
-  <div class="d-flex justify-content-between">
-    <div><h1 class="pt-2"><%= @cocktail.name %></h1></div>
-    <div><%= link_to "Back to all cocktails", root_path, class: "btn btn-primary mt-3" %></div>
+    <ul class="doses-list-show">
+      <% @cocktail.doses.each do |dose| %>
+      <li class="doses-card-show"><%= dose.ingredient.name.capitalize %> <%= link_to dose_path(dose), method: :delete, data: { confirm: "Are you sure?" } do %>
+      <i class="fas fa-trash-alt ml-2"></i>
+      <% end %> </li>
+      <% end %>
+    </ul>
+
+    <%= link_to "Edit Dose", new_cocktail_dose_path(@cocktail), class: "btn btn-primary mt-3" %>
+    <div><%= link_to "Back to all cocktails", root_path, class: "btn btn-primary mt-3 back-to-all-show" %></div>
+
   </div>
-
-  <%= link_to "Edit Dose", new_cocktail_dose_path(@cocktail), class: "btn btn-primary mt-3" %>
-
-  <ul class="mt-4">
-    <% @cocktail.doses.each do |dose| %>
-    <li><%= dose.ingredient.name.capitalize %> <%= link_to dose_path(dose), method: :delete, data: { confirm: "Are you sure?" } do %>
-    <i class="fas fa-trash-alt ml-2"></i>
-    <% end %> </li>
-    <% end %>
-  </ul>
-
 </div>

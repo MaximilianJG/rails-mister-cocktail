@@ -1,4 +1,4 @@
-<div class="container pt-3">
+<div class="container p-5 card mt-5 form-card">
 
   <div class="d-flex justify-content-between">
     <div><h1 class="pt-2">Add a dose to <%= @cocktail.name %></h1></div>
@@ -9,7 +9,7 @@
   <%= simple_form_for [@cocktail, @dose] do |f| %>
     <%= f.association :ingredient %>
     <%= f.input :description %>
-    <%= f.submit %>
+    <%= f.submit "Add Dose", class: 'btn btn-dark' %>
   <% end %>
 </div>
 
